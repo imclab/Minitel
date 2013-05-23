@@ -29,10 +29,10 @@ void loop() {
   demoColor();
   delay(pause);
 
-  demoGraphics(true);
+  demoGraphics(false);
   delay(pause);
 
-  demoGraphics(false);
+  demoGraphics(true);
   delay(pause);
 
   demoBip();
@@ -69,7 +69,9 @@ void demoGraphics(boolean underline) {
   
   m.graphicMode();
   
-  m.pixelate();
+  if (underline) {
+    m.pixelate();
+  }
   m.noCursor();
 
   // No color 
@@ -130,8 +132,10 @@ void demoGraphics(boolean underline) {
     m.serialprint7(i);
     m.serialprint7(9);
   }
+  
   m.useDefaultColors();
   m.noPixelate();
+  
 }
 
 
