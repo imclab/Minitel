@@ -8,7 +8,7 @@
  * For the Graffiti Research Lab France
  * http://graffitiresearchlab.fr
  * 
- * Based on works from the Tetalab (Fabrice, Renaud, PG & Phil)
+ * Based on works by the Tetalab (Fabrice, Renaud, PG & Phil)
  * http://tetalab.org
  */
  
@@ -426,6 +426,15 @@ void Minitel::incrustation(boolean b) {
   } 
 }
 
+void Minitel::incrustation() {
+	incrustation(INCRUSTATION_ON);
+}
+
+void Minitel::noIncrustation() {
+    incrustation(INCRUSTATION_OFF);
+}
+
+
 void Minitel::pixelate() {
   pixelate(true); 
 }
@@ -447,7 +456,7 @@ void Minitel::pixelate(boolean b) {
 }
 
 
-void Minitel::setLineMask(boolean b) {
+void Minitel::lineMask(boolean b) {
   serialprint7(27);
   if (b) {
     serialprint7(LINE_MASK_ON);
@@ -457,6 +466,13 @@ void Minitel::setLineMask(boolean b) {
   } 
 }
 
+void Minitel::lineMask() {
+    lineMask(LINE_MASK_ON);
+}
+
+void Minitel::noLineMask() {
+    lineMask(LINE_MASK_OFF);
+}
 
 void Minitel::video(byte v) {
   if (v == VIDEO_INVERT || v == VIDEO_STANDARD || v == VIDEO_TRANSPARENT) {

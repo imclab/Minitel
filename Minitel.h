@@ -143,6 +143,14 @@ private :
 	boolean _currentBlink;
 	boolean _currentShowCursor;
 	void init();
+	void refreshSettings();
+	void mode(byte mode);
+	void cursor(boolean b);
+	void blink(boolean b);
+	void pixelate(boolean b);
+	void video(byte v);
+	void incrustation(boolean b);
+	void lineMask(boolean b);
 	boolean isValidChar(byte index);
 	boolean isAccent(char c);
 	boolean printAccentChar(char c);
@@ -154,7 +162,6 @@ public :
 
 	Minitel();
 	Minitel(int rx, int tx);
-	void refreshSettings();
 	byte getGraphicChar(String s);
 	void serialprint7(byte b);
 	void graphic(String s, int x, int y);
@@ -180,21 +187,18 @@ public :
 	void moveCursor(byte dir, int n);
 	void cursor();
 	void noCursor();
-	void cursor(boolean b);
 	void clearScreen();
-	void mode(byte mode);
 	void graphicMode();
 	void textMode();
 	void blink();
 	void noBlink();
-	void blink(boolean b);
 	void charSize(byte type);
-	void incrustation(boolean b);
+	void incrustation();
+	void noIncrustation();
 	void pixelate();
 	void noPixelate();
-	void pixelate(boolean b);
-	void setLineMask(boolean b);
-	void video(byte v);
+	void lineMask();
+	void noLineMask();
 	void standardVideo();
 	void invertVideo();
 	void transparentVideo();
