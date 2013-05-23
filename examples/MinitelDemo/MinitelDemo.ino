@@ -60,7 +60,7 @@ void loop() {
 void demoGraphics(boolean underline) {
 
   m.clearScreen();
-  m.mode(TEXT_MODE);
+  m.textMode();
   m.textColor(WHITE);
   m.bgColor(RED);
   m.text(" GRAPHICS DEMO ", 4, 1);
@@ -69,7 +69,7 @@ void demoGraphics(boolean underline) {
   
   m.graphicMode();
   
-  m.pixelate(underline);
+  m.pixelate();
   m.noCursor();
 
   // No color 
@@ -137,7 +137,7 @@ void demoGraphics(boolean underline) {
 
 void demoCursor() {
   m.clearScreen();
-  m.mode(TEXT_MODE);
+  m.textMode();
   m.textColor(WHITE);
   m.bgColor(RED);
   m.text(" CURSOR DEMO ", 4, 1);
@@ -177,7 +177,7 @@ void demoCursor() {
 
 void demoCharacters() {
   m.clearScreen();
-  m.mode(TEXT_MODE);
+  m.textMode();
   m.textColor(WHITE);
   m.bgColor(RED);
   m.text(" CHARACTERS DEMO ", 4, 1);
@@ -267,7 +267,7 @@ void demoCharacters() {
 
 void demoBip() {
   m.clearScreen();
-  m.mode(TEXT_MODE);
+  m.textMode();
   m.textColor(WHITE);
   m.bgColor(RED);
   m.text(" BIP DEMO ", 4, 1);
@@ -285,7 +285,7 @@ void demoBip() {
 
 void demoText() {
   m.clearScreen();
-  m.mode(TEXT_MODE);
+  m.textMode();
   m.textColor(WHITE);
   m.bgColor(RED);
   m.text(" TEXT DEMO ", 4, 1);
@@ -304,12 +304,12 @@ void demoText() {
 void demoColor() {
 
   m.clearScreen();
-  m.mode(TEXT_MODE);
+  m.textMode();
   m.textColor(WHITE);
   m.bgColor(RED);
   m.text(" COLORS DEMO ", 4, 1);
 
-  m.mode(GRAPHIC_MODE);
+  m.graphicMode();
   m.bgColor(RED);
   m.rect((byte) m.getGraphicChar("011001"), 4, 4, 33, 20);
 
@@ -317,7 +317,8 @@ void demoColor() {
     m.moveCursorTo(5, 5+i);
 
     m.textColor(WHITE);
-    m.textByte(m.getGraphicChar("111111"));
+    byte c = m.getGraphicChar("111111");
+    m.textByte(c);
     m.repeat(3);
 
     m.textColor(YELLOW);
