@@ -128,6 +128,66 @@
 #define SPE_CHAR_LOWER_OE 122
 #define SPE_CHAR_BETA 123
 
+/*
+#define kPause  160
+#define k1  177
+#define k2  178
+#define k3  51
+#define k4  180
+#define k5  53
+#define k6  54
+#define k7  183
+#define k8  184
+#define k9  57
+#define k0  48
+#define kStar  170
+#define kHash  163
+
+#define kComa  172
+#define kDot  46
+#define kExcl  39
+#define kSemi  187
+#define kDash  45
+#define kColon  58
+#define kInterro  63
+
+#define kMenu  147
+#define kSomm  198
+#define kGuide  68
+#define kAnnul  197
+#define kCorrect  71
+#define kRetour  66
+#define kSuite  72
+#define kRepet  195
+#define kEnvoi  65
+
+#define kA  65
+#define kB  66
+#define kC  195
+#define kD  68
+#define kE  197
+#define kF  198
+#define kG  71
+#define kH  72
+#define kI  201
+#define kJ  202
+#define kK  75
+#define kL  204
+#define kM  77
+#define kN  78
+#define kO  207
+#define kP  80
+#define kQ  209
+#define kR  210
+#define kS  83
+#define kT  212
+#define kU  85
+#define kV  86
+#define kW  215
+#define kX  216
+#define kY  89
+#define kZ  90
+*/
 
 class Minitel : public SoftwareSerial {
 
@@ -142,6 +202,7 @@ private :
 	boolean _currentUnderline;
 	boolean _currentBlink;
 	boolean _currentShowCursor;
+	boolean _menuKeyPressed;
 	void init();
 	void refreshSettings();
 	void mode(byte mode);
@@ -204,6 +265,9 @@ public :
 	void transparentVideo();
 	void setMaxSpeed();
 	void bip(long duration);
+	char getKey();
+	byte getKeyCode();
+	boolean isMenuKey();
 	void rect(char c, int x, int y, int w, int h);
 	void rect(byte c, int x, int y, int w, int h);
 	void spiral(int x, int y, int siz, int c);

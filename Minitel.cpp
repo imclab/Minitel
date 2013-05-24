@@ -27,20 +27,16 @@ boolean _currentShowCursor = false;
 
 
 Minitel::Minitel() : SoftwareSerial(6,7) {
-	pinMode(6, OUTPUT);
-	pinMode(7, OUTPUT);
 	init();
 }
 
 
 Minitel::Minitel(int rx, int tx) : SoftwareSerial(rx,tx) {
-	pinMode(rx, INPUT);
-	pinMode(tx, OUTPUT);
 	init();
 }
 
 void Minitel::init() {
-	//Serial.begin(1200);
+	Serial.begin(1200);
 	begin(1200);
 	refreshSettings();
 }
@@ -513,6 +509,403 @@ void Minitel::bip(long duration) {
   }
 }
 
+byte Minitel::getKeyCode() {
+	byte b = 255;
+	b = read();		
+	if (b != 255) {
+		Serial.println(b);
+	}
+	return b;
+}
+
+char Minitel::getKey() {
+  byte b = 255; 
+  b =  read();
+  char c = '^';
+
+  // Menu keys
+  if (b == 147) {
+  	_menuKeyPressed = true;
+  	delay(50);
+  }
+  else if (_menuKeyPressed) {
+	if (b == 198) { // Sommaire
+		c = '1';
+	
+} 
+	
+else if (b == 197) { // Annul
+		c = '2';
+	
+} 
+	
+else if (b == 66) { // Retour
+		c = '3';
+	
+} 
+	
+else if (b == 195) { // Répétition
+		c = '4';
+	
+} 
+	
+else if (b == 68) { // Guide
+		c = '5';
+	
+} 
+	
+else if (b == 71) { // Correction
+		c = '6';
+	
+} 
+	
+else if (b == 72) { // Suite
+		c = '7';
+	
+} 
+	
+else if (b == 65) { // Envoi
+		c = '8';
+	
+} 
+	_menuKeyPressed = false;
+  }
+  else {
+	if (b == 160) { // Space
+		c = ' ';
+	}
+
+	else if (b == 177) { // 1
+		c = '1';
+	
+} 
+	
+else if (b == 178) { // 2
+		c = '2';
+	
+} 
+	
+else if (b == 51) { // 3
+		c = '3';
+	
+} 
+	
+else if (b == 180) { // 4
+		c = '4';
+	
+} 
+	
+else if (b == 53) { // 5
+		c = '5';
+	
+} 
+	
+else if (b == 54) { // 6
+		c = '6';
+	
+} 
+	
+else if (b == 183) { // 7
+		c = '7';
+	
+} 
+	
+else if (b == 184) { // 8
+		c = '8';
+	
+} 
+	
+else if (b == 57) { // 9
+		c = '9';
+	
+} 
+	
+else if (b == 48) { // 0
+		c = '0';
+	
+} 
+	
+else if (b == 170) { // *
+		c = '*';
+	
+} 
+	
+else if (b == 163) { // #
+		c = '#';
+	
+} 
+	
+else if (b == 172) { // ,
+		c = ',';
+	
+} 
+	
+else if (b == 46) { // .
+		c = '.';
+	
+} 
+	
+else if (b == 39) { // '
+		c = '\'';
+	
+} 
+	
+else if (b == 187) { // ;
+		c = ';';
+	
+} 
+	
+else if (b == 45) { // -
+		c = '-';
+	
+} 
+	
+else if (b == 58) { // :
+		c = ':';
+	
+} 
+	
+else if (b == 63) { // ?
+		c = '?';
+	
+} 
+	
+else if (b == 65) { // A
+		c = 'A';
+	
+} 
+	
+else if (b == 66) { //  B
+		c = 'B';
+	
+} 
+	
+else if (b == 195) { // C
+		c = 'C';
+	
+} 
+	
+else if (b == 68) { // D
+		c = 'D';
+	
+} 
+	
+else if (b == 197) { // E
+		c = 'E';
+	
+} 
+	
+else if (b == 198) { // F
+		c = 'F';
+	
+} 
+	
+else if (b == 71) { // G
+		c = 'G';
+	
+} 
+	
+else if (b == 72) { // H
+		c = 'H';
+	
+} 
+	
+else if (b == 201) { // I
+		c = 'I';
+	
+} 
+	
+else if (b == 202) { // J
+		c = 'J';
+	
+} 
+	
+else if (b == 75) { // K
+		c = 'K';
+	
+} 
+	
+else if (b == 204) { // L
+		c = 'L';
+	
+} 
+	
+else if (b == 77) { // M
+		c = 'M';
+	
+} 
+	
+else if (b == 78) { // N
+		c = 'N';
+	
+} 
+	
+else if (b == 207) { // O
+		c = 'O';
+	
+} 
+	
+else if (b == 80) { // P
+		c = 'P';
+	
+} 
+	
+else if (b == 209) { // Q
+		c = 'Q';
+	
+} 
+	
+else if (b == 210) { // R
+		c = 'R';
+	
+} 
+	
+else if (b == 83) { // S
+		c = 'S';
+	
+} 
+	
+else if (b == 212) { // T
+		c = 'T';
+	
+} 
+	
+else if (b == 85) {  //U
+		c = 'U';
+	
+} 
+	
+else if (b == 86) { // V
+		c = 'V';
+	
+} 
+	
+else if (b == 215) { // W
+		c = 'W';
+	
+} 
+	
+else if (b == 216) { // X
+		c = 'X';
+	
+} 
+	
+else if (b == 89) { // Y
+		c = 'Y';
+	
+} 
+	
+else if (b == 90) { // Z
+		c = 'Z';
+	
+}
+	
+else if (b == 33) { // !
+		c = '!';
+	
+}
+	
+else if (b == 34) { // !
+		c = '"';
+	
+}
+	
+else if (b == 163) { // #
+		c = '#';
+	
+}
+	
+else if (b == 36) { // $
+		c = '$';
+	
+}
+	
+else if (b == 165) { // %
+		c = '%';
+	
+}
+	
+else if (b == 166) { // &
+		c = '&';
+	
+}
+	
+else if (b == 39) { // '
+		c = '\'';
+	
+}
+	
+else if (b == 40) { // (
+		c = '(';
+	
+}
+	
+else if (b == 169) { // )
+		c = ')';
+	
+}
+	
+else if (b == 219) { // [
+		c = '[';
+	
+}
+	
+else if (b == 222) { // ↑
+		c = '↑';
+	
+}
+	
+else if (b == 221) { // ]
+		c = '[';
+	
+}
+	
+else if (b == 60) { // < 
+		c = '<';
+	
+}
+	
+else if (b == 190) { // >
+		c = '>';
+	
+}
+	
+else if (b == 192) { // @
+		c = '@';
+	
+}
+	
+else if (b == 43) { // +
+		c = '+';
+	
+}
+	
+else if (b == 189) { // =
+		c = '=';
+	
+}
+	
+else if (b == 170) { // *
+		c = '*';
+	
+}
+	
+else if (b == 175) { // /
+		c = '/';
+	
+}
+	
+else if (b == 123) { // /
+		c = '|';
+	
+}
+	}
+	return c;
+}
+
+boolean Minitel::isMenuKey() {
+	return _menuKeyPressed;
+}
 
 void Minitel::rect(char c, int x, int y, int w, int h) {
   byte b = getCharByte(c);
