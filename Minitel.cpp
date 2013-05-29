@@ -38,6 +38,7 @@ Minitel::Minitel(int rx, int tx) : SoftwareSerial(rx,tx) {
 void Minitel::init() {
 	Serial.begin(1200);
 	begin(1200);
+	useDefaultColors();
 	refreshSettings();
 }
 
@@ -277,7 +278,7 @@ void Minitel::useDefaultColors() {
 }
 
 
-void Minitel::moveCursorTo(int x, int y) {
+void Minitel::moveCursorTo(byte x, byte y) {
   serialprint7(31); // Code positionnement de curseur
   serialprint7(64+y); // coordonnées x (x+64) (x de 1 à 40)
   serialprint7(64+x); // coordonnées y (y+64) (y de 1 à 24)
@@ -325,7 +326,7 @@ void Minitel::moveCursor(byte dir, int n) {
 
 void Minitel::refreshSettings() {
   // Common parameters
-  mode(_currentMode);
+  serialprint7(_currentMode);
   textColor(_currentTextColor);
   bgColor(_currentBgColor); // Only in graphic mode ?
   blink(_currentBlink);
@@ -363,22 +364,23 @@ void Minitel::cursor(boolean b) {
 
 void Minitel::clearScreen() {
   serialprint7(CLEARSCREEN);
+  refreshSettings();
 }
 
 
 void Minitel::mode(byte mode) {
   if (mode == GRAPHIC_MODE || mode == TEXT_MODE) {
-    serialprint7(mode);
     _currentMode = mode;
+    refreshSettings();
   } 
 }
 
 void Minitel::graphicMode() {
-  mode(GRAPHIC_MODE); 
+  mode(GRAPHIC_MODE);
 }
 
 void Minitel::textMode() {
-  mode(TEXT_MODE); 
+  mode(TEXT_MODE);
 }
 
 
